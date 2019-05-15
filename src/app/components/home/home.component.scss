@@ -1,0 +1,11 @@
+tr {
+  cursor: pointer;
+}
+
+tbody {
+  td {
+    .btn-danger {
+      z-index:9999;
+    }
+  }
+}

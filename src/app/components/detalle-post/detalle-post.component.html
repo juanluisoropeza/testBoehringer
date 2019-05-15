@@ -1,0 +1,71 @@
+<article>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-2 link_atras">
+        <a href="/"><i class="fas fa-arrow-left"></i></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 box_content" *ngIf="existenDetalles">
+        <h4>Detalles:</h4>
+        <div class="form-group">
+          <label>ID</label>
+          <p class="text-muted">{{ datosPost.id }}</p>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label>TITLE</label>
+          <p class="text-muted">{{ datosPost.title }}</p>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label>BODY</label>
+          <p class="text-muted">{{ datosPost.body }}</p>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label>USER-ID</label>
+          <p class="text-muted">{{ datosPost.userId }}</p>
+        </div>
+      </div>
+      <div class="col-lg-5 box_content text-center" *ngIf="!existenDetalles">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 opcion_comentarios">
+        <form>
+          <div class="form-group">
+            <label>Ver Comentarios: </label>
+            <label><input type="radio" name="opcion" value="1" (click)="setradio('si')" ngModel> Si</label>
+            <label><input type="radio" name="opcion" value="2" (click)="setradio('no')" [(ngModel)]="radioSelected" ngModel> No</label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="isSelected('si')">
+      <div class="col-lg-12 text-center" *ngIf="!existenComentarios">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <ng-template *ngIf="existenComentarios">
+        <h4>Comentarios:</h4>
+      </ng-template>      
+      <div class="col-lg-4 box_comments" *ngFor="let comentarios of datosPostComentarios">
+        <div class="box_content">
+          <div class="form-group">
+            <label>User</label>
+            <p class="text-muted">{{ comentarios.email }}</p>
+            <label>Name</label>
+            <p class="text-muted">{{ comentarios.name }}</p>
+            <label>Body</label>
+            <p class="text-muted">{{ comentarios.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

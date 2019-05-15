@@ -1,0 +1,41 @@
+<article>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-2 link_atras">
+        <a href="/"><i class="fas fa-arrow-left"></i></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-5 box_content">
+        <h2>New Post</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+          <div class="form-group">
+            <label>TITLE</label>
+            <input type="text" class="form-control" formControlName="title" placeholder="insert title..." [ngClass]="{ 'is-invalid': submitted && f.title.errors }"/>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+              <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>BODY</label>
+            <textarea formControlName="body" rows="3" class="form-control" placeholder="insert body..." [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
+            <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+              <div *ngIf="f.body.errors.required">Body is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>USER-ID</label>
+            <input type="text" class="form-control" formControlName="userId" placeholder="insert user ID..." [ngClass]="{ 'is-invalid': submitted && f.userId.errors }"/>
+            <div *ngIf="submitted && f.userId.errors" class="invalid-feedback">
+              <div *ngIf="f.userId.errors.required">User ID is required</div>
+              <div *ngIf="f.userId.errors.pattern">User ID is only numbers</div>
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</article>
